@@ -75,13 +75,6 @@ export class MainPage {
        spinner: 'dots'
       });
     loader.present();
-
-  }
-  ionViewDidLoad(){
-    let loader = this.loadingCtrl.create({
-      content: "Please wait...",
-       spinner: 'dots'
-      });
       var push=this.Push.init({
           android: {
           senderID: '835143597576'
@@ -107,6 +100,7 @@ export class MainPage {
     });
 
     });
+
   }
 
   setColor(btn, value) {
