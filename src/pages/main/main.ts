@@ -2,6 +2,7 @@ import { Component,ViewChild,ElementRef} from '@angular/core';
 import { IonicPage, NavController, NavParams,App } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 import { ModalController,AlertController } from 'ionic-angular';
+import { Push, PushObject, PushOptions } from '@ionic-native/push';
 // import { HttpModule,Http } from '@angular/http';
 
 // import { MenuPage } from '../../pages/menu/menu';
@@ -16,7 +17,7 @@ import {LogoutP} from '../../providers/logout/logout'
 @Component({
   selector: 'page-main',
   templateUrl: 'main.html',
-   providers: [MainP]
+   providers: [MainP,Push]
  
 })
 export class MainPage {
@@ -37,9 +38,10 @@ export class MainPage {
      public alertCtrl1 :AlertController,
      public logout1 : LogoutP,
      public app  :App,
-   
+     public Push: Push
+
   ) {
- 
+
 
   }
 
@@ -51,7 +53,7 @@ export class MainPage {
     loader.present();
     var userid = localStorage.getItem('userid');
     this.MainP.getWork(userid)
-    .then((data : any) => { 
+    .then((data : any) => {
          if (data.ok) {
             this.work = data.status;
          }
@@ -66,14 +68,46 @@ export class MainPage {
     modal.present();
   }
 
- 
   ionViewWillEnter() {
       this.presentLoading();
-      
-  
-    
-  }
+          let loader = this.loadingCtrl.create({
+      content: "Please wait...",
+       spinner: 'dots'
+      });
+    loader.present();
 
+  }
+  ionViewDidLoad(){
+    let loader = this.loadingCtrl.create({
+      content: "Please wait...",
+       spinner: 'dots'
+      });
+      var push=this.Push.init({
+          android: {
+          senderID: '835143597576'
+           },
+           ios: {
+       alert: 'true',
+       badge: true,
+       sound: 'false'
+       },
+     windows: {}
+      });
+     push.on('registration').subscribe((registration: any) => {
+       console.log('Device registered', registration)
+       let token = registration.registrationId;
+    var userid = localStorage.getItem('userid');
+    this.MainP.addToken(userid,token)
+    .then((data : any) => { 
+         if (data.ok) {
+         }
+      loader.dismiss();
+    }, (error) => {
+       loader.dismiss();
+    });
+
+    });
+  }
 
   setColor(btn, value) {
     console.log("sadada");
