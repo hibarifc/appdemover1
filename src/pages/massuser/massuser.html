@@ -33,13 +33,9 @@
   
     <ion-list >
         <ion-item *ngFor="let u of username_thedrone" >
-          <ion-thumbnail item-start>
-            <img src="img/thumbnail-totoro.png">
-          </ion-thumbnail>
-         
           <h2 >  ชื่อ Drone :{{ u.firstname }}</h2>
-          <p>ที่อยู่ :{{u.address}} </p>
-         
+          <p>คะแนนเรตติ้ง :{{u.ratingavg}} </p>
+          <button ion-button clear item-end (click)="show({charNum: u})">ดู</button>
           <button ion-button clear item-end (click)="selectuser(u)">เลือก</button>
         </ion-item>
       </ion-list>

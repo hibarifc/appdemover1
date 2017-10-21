@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams, AlertController, LoadingController
 // ===============================================
 import{MassuserP} from'../../providers/massuser/massuser';
 import{SelectdronePage}from '../selectdrone/selectdrone';
+import{ViewprofilePage}from '../viewprofile/viewprofile';
 
 @IonicPage()
 @Component({
@@ -11,6 +12,7 @@ import{SelectdronePage}from '../selectdrone/selectdrone';
   templateUrl: 'massuser.html',
   providers :[MassuserP]
 })
+
 export class MassuserPage {
   users_id: number;
   username_thedrone1: any;
@@ -83,13 +85,11 @@ export class MassuserPage {
   }
 
 
-
-  selectuser(id){
-    let loader = this.loadingCtrl.create({
-      content: "Please wait...",
-       spinner: 'dots'
-    });
+  show(id){
+    this.navCtrl.push(ViewprofilePage,id);
     
+  }
+  selectuser(id){
     this.users_id = id;
     this.navCtrl.push(SelectdronePage,this.users_id)
 

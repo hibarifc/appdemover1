@@ -9,6 +9,10 @@ import { LoadingController } from 'ionic-angular';
 // import { MenuPage } from '../../pages/menu/menu';
 import {AdddronePage} from '../adddrone/adddrone';
 import {SelectdroneP} from '../../providers/selectdrone/selectdrone';
+import {DroneallPage} from '../../pages/droneall/droneall';
+import {ManagedronePage} from '../../pages/managedrone/managedrone';
+
+
 
 @Component({
   templateUrl: 'drones.html',
@@ -29,8 +33,14 @@ export class DronesPage {
     public SelectdroneP : SelectdroneP) 
   {
   }
+  managedrone(){
+    this.navCtrl.push(ManagedronePage);
+  }
    adddrone(){
     this.navCtrl.push(AdddronePage);
+  }
+  goTodrone(){
+    this.navCtrl.push(DroneallPage);
   }
 
    presentLoading() {
@@ -55,7 +65,7 @@ export class DronesPage {
     });
   }
   ionViewWillEnter() {
-      this.presentLoading();
+
       
   
     

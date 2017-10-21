@@ -24,7 +24,7 @@ export class AddbookdronePage {
         public viewCtrl: ViewController, public modalCtrl: ModalController,public loadingCtrl :LoadingController,)
         {
      this.user_id_rentar = this.params.get('users_id');
-     this.drone_id = this.params.get('id');
+     this.drone_id = this.params.get('drones_detail_id');
      this.price = this.params.get('price');
       
         }
@@ -38,7 +38,7 @@ saveAddBook(){
   });
   let book = { 
     user_id_rentar : this.params.get('users_id'),
-    drone_id :       this.params.get('id'),
+    drone_id :       this.params.get('drones_detail_id'),
     price :          this.params.get('price'),
     address :        this.address,
     area_size :      this.area_size,

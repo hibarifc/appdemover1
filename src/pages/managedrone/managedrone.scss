@@ -1,0 +1,15 @@
+table{
+	   width: 100%;
+}
+table,th,td{
+	border : 1px solid black;
+	border-collapse: collapse;
+	opacity: 0.95;
+}
+th,td{
+	padding: 10px;
+	text-align: center;
+
+}
+tr:nth-child(even){background-color: #f2f2f2}
+

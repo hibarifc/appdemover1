@@ -1,0 +1,28 @@
+<ion-header>
+    <ion-navbar>
+      <ion-title>จัดการโดรน</ion-title>
+    </ion-navbar>
+  </ion-header>
+<ion-content >
+<div style="overflow-x:auto;">
+ <table>
+    
+    <tr>
+        <th>ชื่อ</th>
+        <th>แก้ไข</th>
+    </tr>
+    <tr *ngFor="let p of work">
+        <td>{{p.name}}</td>
+        <td> <button ion-button icon-only (click)="openModal({charNum: p})">
+        <ion-icon name="build"></ion-icon>
+      </button></td>
+    </tr>
+ </table>
+ </div>
+   <ion-row>
+      <ion-col>
+          <div><button col-md-12 ion-button color="danger" block (click)="adddrone()">เพิ่ม Drone</button></div>
+      </ion-col>
+    </ion-row> 
+
+ </ion-content>

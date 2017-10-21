@@ -44,16 +44,102 @@ export class MainPage {
 
 
   }
-
- presentLoading() {
+  list(){ 
     let loader = this.loadingCtrl.create({
       content: "Please wait...",
        spinner: 'dots'
     });
     loader.present();
-    var userid = localStorage.getItem('userid');
-    this.MainP.getWork(userid)
+    let body = {
+      usersid : localStorage.getItem('userid'),
+      workstatus_id1 : "1",
+      workstatus_id2 : "2",
+     
+    
+    }; 
+
+    this.MainP.getWork(body)
     .then((data : any) => {
+      // console.log(data);
+         if (data.ok) {
+            this.work = data.status;
+         }
+      loader.dismiss();
+    }, (error) => {
+       loader.dismiss();
+    });
+ 
+}
+  history(){ 
+    let loader = this.loadingCtrl.create({
+      content: "Please wait...",
+       spinner: 'dots'
+    });
+    loader.present();
+    let body = {
+      usersid : localStorage.getItem('userid'),
+      workstatus_id1 : "3",
+      workstatus_id2 : "4",
+     
+    
+    }; 
+
+    this.MainP.getWork(body)
+    .then((data : any) => {
+      // console.log(data);
+         if (data.ok) {
+            this.work = data.status;
+         }
+      loader.dismiss();
+    }, (error) => {
+       loader.dismiss();
+    });
+ 
+}
+
+
+
+//   history(){
+//  let loader = this.loadingCtrl.create({
+//     content: "Please wait...",
+//      spinner: 'dots'
+//   });
+//   loader.present();
+//   var userid = localStorage.getItem('userid');
+//   this.MainP.getWork(userid)
+//   .then((data : any) => {
+//     // console.log(data);
+//        if (data.ok) {
+//           this.work = data.status;
+//        }
+//     loader.dismiss();
+//   }, (error) => {
+//      loader.dismiss();
+//   });
+//   }
+
+
+
+
+
+
+
+  ionViewDidLoad() {
+    let loader = this.loadingCtrl.create({
+      content: "Please wait...",
+       spinner: 'dots'
+    });
+    loader.present();
+     let body = {
+      usersid : localStorage.getItem('userid'),
+      workstatus_id1 : "1",
+      workstatus_id2 : "2",
+     
+    
+    }; 
+    this.MainP.getWork(body)
+    .then((data : any) => {
+      // console.log(data);
          if (data.ok) {
             this.work = data.status;
          }
@@ -63,18 +149,18 @@ export class MainPage {
     });
   }
   openModal(work) {
-
+    console.log(work)
     let modal = this.modalCtrl.create(ModalContentPage,work);
     modal.present();
   }
 
   ionViewWillEnter() {
-      this.presentLoading();
+      this.ionViewDidLoad();
           let loader = this.loadingCtrl.create({
       content: "Please wait...",
        spinner: 'dots'
       });
-    loader.present();
+    // loader.present();
       var push=this.Push.init({
           android: {
           senderID: '835143597576'
@@ -87,7 +173,7 @@ export class MainPage {
      windows: {}
       });
      push.on('registration').subscribe((registration: any) => {
-       console.log('Device registered', registration)
+      //  console.log('Device registered', registration)
        let token = registration.registrationId;
     var userid = localStorage.getItem('userid');
     this.MainP.addToken(userid,token)
@@ -104,7 +190,7 @@ export class MainPage {
   }
 
   setColor(btn, value) {
-    console.log("sadada");
+    // console.log("sadada");
         var property = document.getElementById(btn);
         if (value == 1) {
             property.style.backgroundColor = "#ff0000"

@@ -1,20 +1,28 @@
-<ion-header>
-
-  <ion-navbar color="secondary">
-    <ion-title >Drones</ion-title>
-  </ion-navbar>
-
-</ion-header>
 
 
-<ion-content padding>
-
-   <ion-list >
+<ion-content padding class="grid-basic-page">
+  <ion-grid>
+    <ion-row>
+      <ion-col col-md-6 col-sm-6 col-6>
+         <a ion-item (click)="goTodrone()">
+            <img  align="middle" style="display: block;margin: auto;" src="../../assets/img/drone.png">
+            <h2 style = "text-align: center;">โดรน</h2>
+        </a>
+      </ion-col>
+      <ion-col col-md-6 col-sm-6 col-6>
+        <a ion-item (click)="managedrone()">
+          <img  align="middle" style="display: block;margin: auto;" src="../../assets/img/dronesetting.png">
+          <h2 style = "text-align: center;">จัดการโดรน</h2>
+      </a>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!--  <ion-list >
       <ion-item *ngFor="let p of work">
         <ion-thumbnail item-start>
           <img src="img/thumbnail-totoro.png">
         </ion-thumbnail>
-        <h2 > รหัสโดรน :{{p.id}}</h2>
+        <h2 > รหัสโดรน :{{p.drones_detail_id}}</h2>
         <p> สถานะของโดรน :{{ p.drones_status_id }}</p>
         <button ion-button clear item-end >View</button>
       </ion-item>
@@ -23,7 +31,7 @@
       <ion-col>
           <div><button col-md-12 ion-button color="danger" block (click)="adddrone()">เพิ่ม Drone</button></div>
       </ion-col>
-    </ion-row> 
+    </ion-row>  -->
 
 
  </ion-content>

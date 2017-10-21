@@ -24,6 +24,7 @@ export class ModelP {
         users_id_ranter : users_id_ranter,
         drone_id : drone_id
       };
+      console.log(drone_id);
       this.http.post(`${this.url}/payment/savepayment`,body)
         .map(res => res.json())
         .subscribe(data => {

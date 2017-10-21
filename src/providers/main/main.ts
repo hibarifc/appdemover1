@@ -11,16 +11,20 @@ export class MainP {
   
   }
 
-  getWork( user_id: any) {
-    console.log(user_id);
+  getWork( body: any) {
+    // console.log(user_id);
     return new Promise((resolve, reject) => {
       // let headers = new Headers({
       //   'Content-Type': 'application/x-www-form-urlencoded', 
       // });
       // let options = new RequestOptions({ headers: headers });
-      let body = {
-        usersid : user_id,
-      };
+      // let body = {
+      //   usersid : userid,
+      //   workstatus_id1 : userid.workstatus_id1,
+      //   workstatus_id2 :  userid.workstatus_id2,
+      //   date :  (new Date().toLocaleString()),
+      // };
+      console.log(body)
       this.http.post(`${this.url}/work/getwork`,body)
         .map(res => res.json())
         .subscribe(data => {
@@ -30,6 +34,32 @@ export class MainP {
         });
     });
   }
+  
+   getWorkreview( body: any) {
+    // console.log(user_id);
+    return new Promise((resolve, reject) => {
+      // let headers = new Headers({
+      //   'Content-Type': 'application/x-www-form-urlencoded', 
+      // });
+      // let options = new RequestOptions({ headers: headers });
+      // let body = {
+      //   usersid : userid,
+      //   workstatus_id1 : userid.workstatus_id1,
+      //   workstatus_id2 :  userid.workstatus_id2,
+      //   date :  (new Date().toLocaleString()),
+      // };
+      console.log(body)
+      this.http.post(`${this.url}/work/getworkreview`,body)
+        .map(res => res.json())
+        .subscribe(data => {
+          resolve(data)
+        }, err => {
+          reject(err)
+        });
+    });
+  }
+
+
   addToken(user_id:any,token:any){
     return new Promise((resolve, reject) => {
       // let headers = new Headers({
@@ -38,7 +68,9 @@ export class MainP {
       // let options = new RequestOptions({ headers: headers });
       let body = {
         usersid : user_id,
-        token : token
+        token : token,
+        date :  (new Date().toLocaleString()),
+        
       };
       this.http.post(`${this.url}/user/addtoken`,body)
         .map(res => res.json())
